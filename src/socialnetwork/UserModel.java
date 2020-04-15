@@ -1,13 +1,17 @@
 package socialnetwork;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserModel {
 	private Integer Id;
 	private String Name;
-	private Integer[] Friends;
+	private List<Integer> Friends = new ArrayList<Integer>();
 	
 	public UserModel(Integer Id, String Name) {
 		setId(Id);
 		setName(Name);
+		Friends.add(4711);
 	}
 	
 	private boolean setId(Integer Id) {
@@ -29,8 +33,12 @@ public class UserModel {
 	}
 	
 	public boolean addFriend(Integer Friend) {
-		//this.Friends 
+		Friends.add(Friend);
 		return true;
+	}
+	
+	public List<Integer> getFriends() {
+		return this.Friends;
 	}
 	
 }

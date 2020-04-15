@@ -9,6 +9,10 @@ public class Socialnetwork {
 		UserController controller = new UserController(model, view);
 		
 		controller.updateView();
+		
+		controller.addFriend(42);
+		
+		controller.updateView();
 	}
 	
 	private static UserModel retrieveUsers() {

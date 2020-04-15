@@ -14,8 +14,13 @@ public class UserController {
 		return true;
 	}
 	
+	public boolean addFriend(Integer Friend) {
+		model.addFriend(Friend);
+		return true;
+	}
+	
 	public boolean updateView() {
-		view.printUserDetails(model.getId(), model.getName());
+		view.printUserDetails(model.getId(), model.getName(), model.getFriends());
 		return true;
 	}
 }
