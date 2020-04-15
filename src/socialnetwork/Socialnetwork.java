@@ -1,6 +1,8 @@
 package socialnetwork;
 
 import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
 
 import com.google.gson.Gson;
 
@@ -46,16 +48,28 @@ public class Socialnetwork {
 		YodaController.addFriend(2);
 		YodaController.addFriend(3);
 		
-		Gson gson = new Gson();
-		gson.toJson(YodaModel, new FileWriter("yoda.json"));
-		
-
 		System.out.println("-------------------------------");
 		System.out.println("Folgende User sind im Netzwerk.");
 		YodaController.updateView();
 		LandoController.updateView();
 		HanController.updateView();
 		AnakinController.updateView();
+		
+
+		Gson gson = new Gson();
+		String yoda = gson.toJson(YodaModel);
+		System.out.println(yoda);
+		
+		String lando = gson.toJson(LandoModel);
+		System.out.println(lando);
+		
+		String han = gson.toJson(HanModel);
+		System.out.println(han);
+		
+		String anakin = gson.toJson(AnakinModel);
+		System.out.println(anakin);
+
+		
 		
 	}
 	

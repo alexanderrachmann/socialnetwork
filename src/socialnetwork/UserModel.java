@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserModel {
-	private Integer Id;
-	private String Name;
-	private List<Integer> Friends = new ArrayList<Integer>();
+	public Integer Id;
+	public String Name;
+	public List<Integer> Friends = new ArrayList<Integer>();
 	
 	public UserModel(Integer Id, String Name) {
 		setId(Id);
