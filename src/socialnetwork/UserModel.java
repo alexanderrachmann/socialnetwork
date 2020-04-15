@@ -11,7 +11,6 @@ public class UserModel {
 	public UserModel(Integer Id, String Name) {
 		setId(Id);
 		setName(Name);
-		Friends.add(4711);
 	}
 	
 	private boolean setId(Integer Id) {
