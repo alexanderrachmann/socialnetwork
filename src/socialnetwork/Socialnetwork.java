@@ -1,5 +1,9 @@
 package socialnetwork;
 
+import java.io.FileWriter;
+
+import com.google.gson.Gson;
+
 public class Socialnetwork {
 
 	public static void main(String[] args) {
@@ -41,6 +45,9 @@ public class Socialnetwork {
 		LandoController.addFriend(3);
 		YodaController.addFriend(2);
 		YodaController.addFriend(3);
+		
+		Gson gson = new Gson();
+		gson.toJson(YodaModel, new FileWriter("yoda.json"));
 		
 
 		System.out.println("-------------------------------");
