@@ -1,0 +1,3 @@
+module socialnetwork {
+	exports socialnetwork;
+}
