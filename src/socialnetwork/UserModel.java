@@ -4,22 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserModel {
-	public Integer Id;
 	public String Name;
-	public List<Integer> Friends = new ArrayList<Integer>();
+	public List<String> Friends = new ArrayList<String>();
 	
-	public UserModel(Integer Id, String Name) {
-		setId(Id);
+	public UserModel(String Name) {
 		setName(Name);
-	}
-	
-	private boolean setId(Integer Id) {
-		this.Id = Id;
-		return true;
-	}
-	
-	public Integer getId() {
-		return this.Id;
 	}
 		
 	private boolean setName(String Name) {
@@ -31,12 +20,12 @@ public class UserModel {
 		return this.Name;
 	}
 	
-	public boolean addFriend(Integer Friend) {
+	public boolean addFriend(String Friend) {
 		Friends.add(Friend);
 		return true;
 	}
 	
-	public List<Integer> getFriends() {
+	public List<String> getFriends() {
 		return this.Friends;
 	}
 	
