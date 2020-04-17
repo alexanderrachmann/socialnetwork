@@ -6,11 +6,12 @@ public class UserCompound {
 	public UserView view;
 	
 	public UserCompound(
-			UserController controller,
-			UserModel model,
+			UserController controller,	
+			UserModel model, 
 			UserView view) {
 		this.controller = controller;
 		this.model = model;
 		this.view = view;
 	}
+	
 }

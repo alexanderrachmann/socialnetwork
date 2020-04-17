@@ -1,47 +1,40 @@
 package socialnetwork;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.google.gson.Gson;
 
 public class Socialnetwork {
-
+		
 	public static void main(String[] args) {
 		
-		UserCompound Yoda = populateNetwork("Yoda");
-		UserCompound Lando = populateNetwork("Lando");
-		UserCompound Han = populateNetwork("Han");
-		UserCompound Anakin = populateNetwork("Anakin");
+		Map<String, UserCompound> UserDatabase = 
+				new HashMap<String, UserCompound>();
 		
 		
-		System.out.println("-------------------------------");
-		System.out.println("Folgende User sind im Netzwerk.");
-		Yoda.controller.updateView();
-		Lando.controller.updateView();
-		Han.controller.updateView();
-		Anakin.controller.updateView();
-		
-		// Yoda likes everyone
-		Lando.controller.addFriend("Yoda");
-		Han.controller.addFriend("Yoda");
-		Anakin.controller.addFriend("Yoda");
-		// Han Solo likes Lando and otherwise. Both like Yoda
-		Han.controller.addFriend("Lando");
-		Lando.controller.addFriend("Han");
-		Yoda.controller.addFriend("Lando");
-		Yoda.controller.addFriend("Han");
-		
-		System.out.println("-------------------------------");
-		System.out.println("Folgende User sind im Netzwerk.");
-		Yoda.controller.updateView();
-		Lando.controller.updateView();
-		Han.controller.updateView();
-		Anakin.controller.updateView();
-		
-
-		persistUser(Yoda.model);
-		persistUser(Lando.model);
-		persistUser(Han.model);
-		persistUser(Anakin.model);
+		UserDatabase.put("Yoda", populateNetwork("Yoda"));
+		UserDatabase.put("Lando", populateNetwork("Lando"));
+		UserDatabase.put("Han", populateNetwork("Han"));
+		UserDatabase.put("Anakin", populateNetwork("Anakin"));
 				
+		// Yoda likes everyone
+		UserDatabase.get("Lando").controller.addFriend("Yoda");
+		UserDatabase.get("Han").controller.addFriend("Yoda");
+		UserDatabase.get("Anakin").controller.addFriend("Yoda");
+				
+		// Han Solo likes Lando and otherwise. Both like Yoda
+		UserDatabase.get("Han").controller.addFriend("Lando");
+		UserDatabase.get("Lando").controller.addFriend("Han");
+		UserDatabase.get("Yoda").controller.addFriend("Lando");
+		UserDatabase.get("Yoda").controller.addFriend("Han");
+		
+		showNetwork(UserDatabase);	
+
+		persistUser(UserDatabase);			
 		
 	}
 	
@@ -50,12 +43,37 @@ public class Socialnetwork {
 		UserView view = new UserView();
 		UserController controller = new UserController(model, view);
 		
-		return compound = UserCompound(controller, model, view); 
+		UserCompound compound = 
+				new UserCompound(controller, model, view);
+		return compound;
 	}
 	
-	public static void persistUser(UserModel model){
+	public static void showNetwork(Map<String, UserCompound> UserDatabase) {
+		System.out.println("-------------------------------");
+		System.out.println("Folgende User sind im Netzwerk.");
+		
+		UserDatabase.get("Yoda").controller.updateView();
+		UserDatabase.get("Lando").controller.updateView();
+		UserDatabase.get("Han").controller.updateView();
+		UserDatabase.get("Anakin").controller.updateView();
+	}
+	
+	public static void persistUser
+		(Map<String, UserCompound> UserDatabase) {
+		
 		Gson gson = new Gson();
-		System.out.println(gson.toJson(model));
+		System.out.println(gson.toJson(UserDatabase));
+		
+		try {
+			File file = new File("UserDatabase.json");
+			file.createNewFile();
+			FileWriter writer = new FileWriter(file);
+			writer.write(gson.toJson(UserDatabase)); 
+			writer.flush();
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
 

@@ -13,4 +13,5 @@ public class UserView {
 			System.out.print(Name + " wird (noch) von niemanden gemocht.");
 		System.out.println();
 	}
+	
 }

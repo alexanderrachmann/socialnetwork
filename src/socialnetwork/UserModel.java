@@ -25,6 +25,11 @@ public class UserModel {
 		return true;
 	}
 	
+	public boolean endFriendship(String Foe) {
+		Friends.remove(Foe);
+		return true;
+	}
+	
 	public List<String> getFriends() {
 		return this.Friends;
 	}
