@@ -15,6 +15,7 @@ public class Socialnetwork {
 		Map<String, UserCompound> UserDatabase = 
 				new HashMap<String, UserCompound>();
 		
+		reviveUsers();
 		
 		UserDatabase.put("Yoda", populateNetwork("Yoda"));
 		UserDatabase.put("Lando", populateNetwork("Lando"));
@@ -34,7 +35,7 @@ public class Socialnetwork {
 		
 		showNetwork(UserDatabase);	
 
-		persistUser(UserDatabase);			
+		buryUsers(UserDatabase);			
 		
 	}
 	
@@ -50,7 +51,7 @@ public class Socialnetwork {
 	
 	public static void showNetwork(Map<String, UserCompound> UserDatabase) {
 		System.out.println("-------------------------------");
-		System.out.println("Folgende User sind im Netzwerk.");
+		System.out.println("Übersicht über das Netzwerk.");
 		
 		UserDatabase.get("Yoda").controller.updateView();
 		UserDatabase.get("Lando").controller.updateView();
@@ -58,11 +59,10 @@ public class Socialnetwork {
 		UserDatabase.get("Anakin").controller.updateView();
 	}
 	
-	public static void persistUser
+	public static void buryUsers
 		(Map<String, UserCompound> UserDatabase) {
 		
 		Gson gson = new Gson();
-		System.out.println(gson.toJson(UserDatabase));
 		
 		try {
 			File file = new File("UserDatabase.json");
@@ -74,6 +74,10 @@ public class Socialnetwork {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void reviveUsers(){
+		
 	}
 }
 
