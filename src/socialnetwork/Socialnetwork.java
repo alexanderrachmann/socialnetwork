@@ -1,67 +1,56 @@
 package socialnetwork;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.Type;
-
 import com.google.gson.Gson;
 
 public class Socialnetwork {
 
 	public static void main(String[] args) {
 		
-		// creating Yoda
-		UserModel YodaModel = new UserModel("Yoda");
-		UserView YodaView = new UserView();
-		UserController YodaController = new UserController(YodaModel, YodaView);
-
-		// creating Lando
-		UserModel LandoModel = new UserModel("Lando");
-		UserView LandoView = new UserView();
-		UserController LandoController = new UserController(LandoModel, LandoView);
+		UserCompound Yoda = populateNetwork("Yoda");
+		UserCompound Lando = populateNetwork("Lando");
+		UserCompound Han = populateNetwork("Han");
+		UserCompound Anakin = populateNetwork("Anakin");
 		
-		// creating Han Solo
-		UserModel HanModel = new UserModel("Han");
-		UserView HanView = new UserView();
-		UserController HanController = new UserController(HanModel, HanView);
-		
-		// creating Anakin
-		UserModel AnakinModel = new UserModel("Anakin");
-		UserView AnakinView = new UserView();
-		UserController AnakinController = new UserController(AnakinModel, AnakinView);
-
 		
 		System.out.println("-------------------------------");
 		System.out.println("Folgende User sind im Netzwerk.");
-		YodaController.updateView();
-		LandoController.updateView();
-		HanController.updateView();
-		AnakinController.updateView();
+		Yoda.controller.updateView();
+		Lando.controller.updateView();
+		Han.controller.updateView();
+		Anakin.controller.updateView();
 		
 		// Yoda likes everyone
-		LandoController.addFriend("Yoda");
-		HanController.addFriend("Yoda");
-		AnakinController.addFriend("Yoda");
+		Lando.controller.addFriend("Yoda");
+		Han.controller.addFriend("Yoda");
+		Anakin.controller.addFriend("Yoda");
 		// Han Solo likes Lando and otherwise. Both like Yoda
-		HanController.addFriend("Lando");
-		LandoController.addFriend("Han");
-		YodaController.addFriend("Lando");
-		YodaController.addFriend("Han");
+		Han.controller.addFriend("Lando");
+		Lando.controller.addFriend("Han");
+		Yoda.controller.addFriend("Lando");
+		Yoda.controller.addFriend("Han");
 		
 		System.out.println("-------------------------------");
 		System.out.println("Folgende User sind im Netzwerk.");
-		YodaController.updateView();
-		LandoController.updateView();
-		HanController.updateView();
-		AnakinController.updateView();
+		Yoda.controller.updateView();
+		Lando.controller.updateView();
+		Han.controller.updateView();
+		Anakin.controller.updateView();
 		
 
-		persistUser(YodaModel);
-		persistUser(LandoModel);
-		persistUser(HanModel);
-		persistUser(AnakinModel);
+		persistUser(Yoda.model);
+		persistUser(Lando.model);
+		persistUser(Han.model);
+		persistUser(Anakin.model);
 				
 		
+	}
+	
+	public static UserCompound populateNetwork(String Name) {
+		UserModel model = new UserModel(Name);
+		UserView view = new UserView();
+		UserController controller = new UserController(model, view);
+		
+		return compound = UserCompound(controller, model, view); 
 	}
 	
 	public static void persistUser(UserModel model){
