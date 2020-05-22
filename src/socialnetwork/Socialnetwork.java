@@ -53,15 +53,15 @@ public class Socialnetwork {
 		System.out.println("-------------------------------");
 		System.out.println("Übersicht über das Netzwerk.");
 		
-		UserDatabase.get("Yoda").controller.updateView();
-		UserDatabase.get("Lando").controller.updateView();
-		UserDatabase.get("Han").controller.updateView();
-		UserDatabase.get("Anakin").controller.updateView();
+		System.out.println(UserDatabase.get("Yoda").controller.updateView());
+		System.out.println(UserDatabase.get("Lando").controller.updateView());
+		System.out.println(UserDatabase.get("Han").controller.updateView());
+		System.out.println(UserDatabase.get("Anakin").controller.updateView());
 	}
 	
 	public static void buryUsers
 		(Map<String, UserCompound> UserDatabase) {
-		
+		/*
 		Gson gson = new Gson();
 		
 		try {
@@ -74,6 +74,7 @@ public class Socialnetwork {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
 	}
 	
 	public static void reviveUsers(){

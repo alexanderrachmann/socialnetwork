@@ -28,8 +28,7 @@ public class UserController {
 		return true;		
 	}
 	
-	public boolean updateView() {
-		view.printUserDetails(model.getName(), model.getFriends());
-		return true;
+	public String updateView() {
+		return view.printUserDetails(model.getName(), model.getFriends());
 	}
 }
